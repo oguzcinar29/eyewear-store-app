@@ -31,7 +31,7 @@ export default function TrendProducts() {
       <div className="text-center my-32">
         <span className="font-semibold text-sm">POPULAR PRODUCTS</span>
         <h1 className="second-font text-7xl font-black">Trending now</h1>
-        <div className="flex gap-5 mt-5 max-lg:flex-col max-lg:gap-16">
+        <div className="flex gap-5 mt-5 max-lg:flex-col max-lg:gap-16 justify-between">
           {products.map((item: any, index) => {
             console.log(item);
             if (index < 3) {

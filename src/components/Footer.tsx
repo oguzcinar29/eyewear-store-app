@@ -5,14 +5,14 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 export default function Footer() {
   return (
     <div className="bg-[#f1f1f1] pt-24 py-12">
-      <div className="flex justify-between px-32 mb-20 max-lg:flex-col max-lg:justify-between max-lg:items-center max-lg:gap-10 max-lg:text-center">
+      <div className="flex justify-between px-32 mb-20 max-lg:flex-col max-lg:justify-between max-lg:items-center max-lg:gap-10 max-lg:text-center max-lg:px-10">
         <div>
           <img
             src="https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/logo-footer-regular.png"
             alt="logo"
           />
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 ">
           <h2 className="font-bold mb-3 text-2xl">ABOUT US</h2>
           <Link to="/">Home</Link>
           <Link to="/">Women</Link>

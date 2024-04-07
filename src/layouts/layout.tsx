@@ -11,8 +11,13 @@ export default function Layout({ children, page }: Props) {
     <div className="flex flex-col min-h-screen relative">
       {page === "home" && (
         <div className="h-screen relative  bg-pink-100">
-          <Header />
+          <Header page="home" />
           <HomeHero />
+        </div>
+      )}
+      {page === "gender" && (
+        <div>
+          <Header page="gender" />
         </div>
       )}
 

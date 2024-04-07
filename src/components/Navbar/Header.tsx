@@ -2,18 +2,24 @@ import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import MobileNav from "./MobileNav";
 
-export default function Header() {
+export default function Header({ page }: any) {
   return (
     <>
-      <nav className="flex absolute  w-full justify-between max-xl:hidden items-center py-5 px-10">
+      <nav
+        className={
+          page === "home"
+            ? "flex absolute  w-full justify-between max-xl:hidden items-center py-5 px-10"
+            : "flex   w-full justify-between max-xl:hidden items-center py-5 px-10 border-b-[1px]"
+        }
+      >
         <div className="w-1/3 flex gap-8  tracking-widest font-semibold  cursor-pointer">
           <Link to="/" className="hover:text-slate-600">
             HOME
           </Link>
-          <Link to="/" className="hover:text-slate-600">
+          <Link to="/product-category/women" className="hover:text-slate-600">
             WOMEN
           </Link>
-          <Link to="/" className="hover:text-slate-600">
+          <Link to="/product-category/men" className="hover:text-slate-600">
             MEN
           </Link>
           <Link to="/" className="hover:text-slate-600">

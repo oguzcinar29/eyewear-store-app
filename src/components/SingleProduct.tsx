@@ -11,7 +11,7 @@ type Props = {
 export default function SingleProduct({ images, name, price, _id }: Props) {
   const [isMouseOver, setMouseOver] = useState<boolean>(false);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-[32%] ">
       <Link to={`/product/${_id}`}>
         <img
           onMouseLeave={() => {

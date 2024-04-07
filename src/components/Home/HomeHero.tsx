@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export default function HomeHero() {
   return (
-    <div className="bg-center mt-20 bg-no-repeat bg-cover   max-h-screen bg-hero-bg  ">
+    <div className="bg-center mt-20 bg-no-repeat bg-cover pt-10   max-h-screen bg-hero-bg  ">
       <div className="flex justify-center items-center relative text-start ">
         <img
           className=" object-contain"
