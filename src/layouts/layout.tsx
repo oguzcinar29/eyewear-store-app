@@ -1,6 +1,8 @@
 import Header from "@/components/Navbar/Header";
 import HomeHero from "@/components/Home/HomeHero";
 import Footer from "@/components/Footer";
+import AboutHero from "@/components/AboutUs/AboutHero";
+import ContactHero from "@/components/Contact/ContactHero";
 
 type Props = {
   children: React.ReactNode;
@@ -18,6 +20,18 @@ export default function Layout({ children, page }: Props) {
       {page === "gender" && (
         <div>
           <Header page="gender" />
+        </div>
+      )}
+      {page === "info" && (
+        <div className="relative">
+          <Header page="home" />
+          <AboutHero />
+        </div>
+      )}
+      {page === "info2" && (
+        <div className="relative">
+          <Header page="home" />
+          <ContactHero />
         </div>
       )}
 

@@ -21,19 +21,19 @@ export default function MobileLinks() {
                 HOME
               </Link>
               <Separator />
-              <Link to="/" className="hover:text-black">
+              <Link to="/product-category/women" className="hover:text-black">
                 WOMEN
               </Link>
               <Separator />
-              <Link to="/" className="hover:text-black">
+              <Link to="/product-category/men" className="hover:text-black">
                 MEN
               </Link>
               <Separator />
-              <Link to="/" className="hover:text-black">
+              <Link to="/about-us" className="hover:text-black">
                 ABOUT US
               </Link>
               <Separator />
-              <Link to="/" className="hover:text-black">
+              <Link to="/contact" className="hover:text-black">
                 CONTACT
               </Link>
               <Separator />

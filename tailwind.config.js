@@ -15,6 +15,10 @@ module.exports = {
         "url('https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/hero-02.png')",
       "different-bg":
         "url('https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/bg-01.jpg')",
+      "about-bg":
+        "url('https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/bg-06.jpg')",
+      "about-dummy-bg":
+        "url('https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/bg-07.jpg')",
     },
     container: {
       center: true,

@@ -7,7 +7,7 @@ export default function Header({ page }: any) {
     <>
       <nav
         className={
-          page === "home"
+          page === "home" || page === "info"
             ? "flex absolute  w-full justify-between max-xl:hidden items-center py-5 px-10"
             : "flex   w-full justify-between max-xl:hidden items-center py-5 px-10 border-b-[1px]"
         }
@@ -22,10 +22,10 @@ export default function Header({ page }: any) {
           <Link to="/product-category/men" className="hover:text-slate-600">
             MEN
           </Link>
-          <Link to="/" className="hover:text-slate-600">
+          <Link to="/about-us" className="hover:text-slate-600">
             ABOUT US
           </Link>
-          <Link to="/" className="hover:text-slate-600">
+          <Link to="/contact" className="hover:text-slate-600">
             CONTACT
           </Link>
         </div>

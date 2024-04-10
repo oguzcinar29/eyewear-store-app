@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./layouts/layout";
 import HomePage from "./pages/HomePage";
 import WomenAndMen from "./pages/WomenAndMen";
+import AboutUsPage from "./pages/AboutUsPage";
+import ContactPage from "./pages/ContactPage";
 
 export default function AppRoutes() {
   return (
@@ -31,8 +33,22 @@ export default function AppRoutes() {
           </Layout>
         }
       />
-
-      <Route path="/admin" element={<span>admin panel</span>} />
+      <Route
+        path="/about-us"
+        element={
+          <Layout page="info">
+            <AboutUsPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <Layout page="info2">
+            <ContactPage />
+          </Layout>
+        }
+      />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

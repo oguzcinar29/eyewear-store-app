@@ -17,7 +17,7 @@ export default function DummyBoxes() {
           src="https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/icon-002.png"
           alt=""
         />
-        <h2 className="font-bold text-2xl">BIG DISCOUNTS</h2>
+        <h2 className="font-bold text-2xl">Free Shipping</h2>
         <p className="text-slate-500 font-light tracking-wider">
           Integer euismod blandit nunc sit amet sollicitudin. Fusce quis orci
           viverra, cursus justo lipsum dolor.
@@ -28,7 +28,7 @@ export default function DummyBoxes() {
           src="https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/icon-003.png"
           alt=""
         />
-        <h2 className="font-bold text-2xl">BIG DISCOUNTS</h2>
+        <h2 className="font-bold text-2xl">Secure payments</h2>
         <p className="text-slate-500 font-light tracking-wider">
           Integer euismod blandit nunc sit amet sollicitudin. Fusce quis orci
           viverra, cursus justo lipsum dolor.
