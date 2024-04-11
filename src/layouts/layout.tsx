@@ -12,7 +12,7 @@ export default function Layout({ children, page }: Props) {
   return (
     <div className="flex flex-col min-h-screen relative">
       {page === "home" && (
-        <div className="h-screen relative  bg-pink-100">
+        <div className="h-screen relative  ">
           <Header page="home" />
           <HomeHero />
         </div>
