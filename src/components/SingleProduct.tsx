@@ -1,5 +1,5 @@
 import { EyeIcon, ShoppingBasketIcon, Star } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Dialog,
@@ -15,25 +15,52 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import SingleProductsDialog from "./SingleProductsDialog";
+import { StateContext } from "./Context/ProductsContext";
 export type SingleProductProps = {
   images: Array<string>;
   name: string;
   price: number;
   _id: string;
   category: string;
+  item: any;
 };
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function SingleProduct({
   images,
   name,
   price,
+  item,
   _id,
   category,
 }: SingleProductProps) {
+  const { card } = useContext(StateContext)!;
   const addToCart = async () => {
-    const id = nanoid(48);
-    console.log(id);
+    if (window.localStorage.getItem("guestId") === null) {
+      console.log("hey");
+      const id = nanoid(48);
+      window.localStorage.setItem("guestId", JSON.stringify(id));
+    }
+    const newItem = {
+      ...item,
+      quantity: 1,
+    };
+    card.push(newItem);
+    try {
+      const res = await fetch(`${API_URL}/api/card/add-to-card`, {
+        method: "POST",
+        headers: { "Context-type": "application/json" },
+        body: JSON.stringify(newItem),
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
+  console.log(card);
+
   const [isMouseOver, setMouseOver] = useState<boolean>(false);
+
   return (
     <div className="flex flex-col w-[32%] min-w-80 mt-10 ">
       <div
@@ -75,6 +102,7 @@ export default function SingleProduct({
                       images={images}
                       name={name}
                       price={price}
+                      item={item}
                       _id={_id}
                       category={category}
                     />

@@ -1,27 +1,29 @@
-// // authContext.tsx
-// import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
 
-// // Define the shape of your context
-// interface CartContextType {
-//   hey: string;
-//   setHey: () => void;
-// }
+type StateContextType = {
+  activeMenu: boolean;
+  setActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  card: Array<any>;
+  setCard: React.Dispatch<React.SetStateAction<any>>;
+};
 
-// // Create the context with initial values
-// const CartContext = createContext<CartContextType | undefined>(undefined);
+export const StateContext = createContext<null | StateContextType>(null);
 
-// // Custom hook to use the CartContext
-// export const useCart = () => {
-//   const context = useContext(CartContext);
-//   if (!context) {
-//     throw new Error("useCart must be used within an CartProvider");
-//   }
-//   return context;
-// };
+type ContextProviderProps = {
+  children: React.ReactNode;
+};
 
-// // CartProvider component to wrap your app and provide the context
-// export const CartProvider: React.FC = ({ children }: any) => {
-//   const [hey, setHey] = useState<string>("");
-//   const values = { hey, setHey };
-//   return <CartContext.Provider value={values}>{children}</CartContext.Provider>;
-// };
+export const ContextProvider = ({ children }: ContextProviderProps) => {
+  const [activeMenu, setActiveMenu] = useState(true);
+  const [card, setCard] = useState<Array<any>>([]);
+  const value = {
+    activeMenu,
+    setActiveMenu,
+    card,
+    setCard,
+  };
+
+  return (
+    <StateContext.Provider value={value}>{children}</StateContext.Provider>
+  );
+};

@@ -14,7 +14,7 @@ export default function GenderProducts({ total, category, products }: any) {
       <div className="flex flex-wrap gap-6  ">
         {products.map((item: any) => {
           if (item.category === category.toUpperCase()) {
-            return <SingleProduct key={item._id} {...item} />;
+            return <SingleProduct key={item._id} item={item} {...item} />;
           }
         })}
       </div>
