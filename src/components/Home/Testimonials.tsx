@@ -4,7 +4,7 @@ import { StarIcon } from "lucide-react";
 
 export default function Testimonials() {
   return (
-    <div className="h-[calc(100vh-30vh)] flex justify-center items-center my-32 ">
+    <div className="h-[calc(100vh-30vh)] flex justify-center items-center my-32 max-lg:my-10 max-lg:h-[calc(100vh-30vh)] ">
       <div className="flex justify-center items-center flex-col w-2/5 mx-auto text-center gap-4 max-lg:w-full ">
         <div className="flex flex-col gap-2 text-center">
           <span className="font-bold text-lg">CLIENTS REVIEWS</span>

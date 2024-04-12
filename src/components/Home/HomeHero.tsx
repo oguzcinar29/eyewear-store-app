@@ -3,10 +3,10 @@ import { Button } from "../ui/button";
 
 export default function HomeHero() {
   return (
-    <div className="bg-center mt-20 bg-no-repeat bg-cover pt-10   max-h-screen bg-hero-bg  ">
+    <div className="bg-center mt-10 max-sm:mt-0 bg-no-repeat bg-cover pt-10 max-sm:pt-0 max-lg:h-[calc(100vh-20vh)]   h-screen bg-hero-bg  ">
       <div className="flex justify-center items-center relative text-start ">
         <img
-          className=" object-contain"
+          className=" object-contain pt-20"
           src="https://websitedemos.net/eyewear-store-04/wp-content/uploads/sites/1121/2022/09/hero-02.png"
           alt="eyewear"
         />

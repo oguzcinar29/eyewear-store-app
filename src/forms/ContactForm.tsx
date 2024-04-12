@@ -15,14 +15,21 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  firstname: z.string().min(2, { message: "The field is required" }).max(50),
+  lastname: z.string().min(2, { message: "The field is required" }).max(50),
+  email: z.string().min(2, { message: "The field is required" }).max(50),
+  message: z.string().min(2, { message: "The field is required" }).max(50),
 });
 export default function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      firstname: "",
+      lastname: "",
+      email: "",
+      message: "",
     },
   });
 
@@ -31,36 +38,36 @@ export default function ContactForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    toast("Event has been created.");
+    form.reset();
   }
   return (
-    <div className="bg-white p-12 shadow-lg">
+    <div className="bg-white p-12 shadow-lg max-lg:p-3">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="flex gap-5 ">
+          <div className="flex gap-5 justify-between w-full   ">
             <FormField
               control={form.control}
-              name="username"
+              name="firstname"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-1/2">
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
-                    <Input className="rounded-none" {...field} />
+                    <Input className="rounded-none " {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="username"
+              name="lastname"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-1/2">
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input className="rounded-none" {...field} />
+                    <Input className="rounded-none w-full" {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -68,7 +75,7 @@ export default function ContactForm() {
           </div>
           <FormField
             control={form.control}
-            name="username"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
@@ -82,7 +89,7 @@ export default function ContactForm() {
           />
           <FormField
             control={form.control}
-            name="username"
+            name="message"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Message</FormLabel>
@@ -99,7 +106,7 @@ export default function ContactForm() {
           />
 
           <Button
-            onClick={() => toast("Event has been created.")}
+            className="bg-transparent border border-black text-black rounded-none hover:text-white"
             type="submit"
           >
             SEND

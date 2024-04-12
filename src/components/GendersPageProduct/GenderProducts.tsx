@@ -1,18 +1,17 @@
-import { ArrowDown } from "lucide-react";
 import SingleProduct from "../SingleProduct";
+import SelectProducts from "./SelectProducts";
 
 export default function GenderProducts({ total, category, products }: any) {
   return (
-    <div className="container mx-auto my-16">
-      <div className="flex justify-between">
-        <span>
+    <div className="container mx-auto  my-16">
+      <div className="flex justify-between text-slate-500 mt-32">
+        <span className="tracking-widest">
           Showing all {category === "men" ? total.men : total.women} results
         </span>
-        <span className="flex gap-3">
-          Default sorting <ArrowDown />
-        </span>
+
+        <SelectProducts />
       </div>
-      <div className="flex flex-wrap gap-6  mt-5">
+      <div className="flex flex-wrap gap-6  ">
         {products.map((item: any) => {
           if (item.category === category.toUpperCase()) {
             return <SingleProduct key={item._id} {...item} />;

@@ -4,11 +4,17 @@ const DATABASE_URI = import.meta.env.VITE_API_BASE_URL;
 export default function GenderPage({ category }: any) {
   const [products, setProducts] = useState<Array<any>>([]);
   const getProducts = async () => {
+    const value = JSON.parse(window.localStorage.getItem("sort") || "[]");
+    console.log(value);
+
     try {
-      const res = await fetch(`${DATABASE_URI}/api/products/get-products`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `${DATABASE_URI}/api/products/get-products?sort=${value}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch products");
       } else {
@@ -22,7 +28,7 @@ export default function GenderPage({ category }: any) {
   };
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [window.localStorage.getItem("sort")]);
 
   const getProductNumber = () => {
     let women = 0;
