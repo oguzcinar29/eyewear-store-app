@@ -12,7 +12,20 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ContextProvider>
       <Router>
         <AppRoutes />
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            unstyled: false,
+
+            classNames: {
+              error: "bg-red-400",
+              success:
+                "rounded-sm bg-green-400 text-white p-3 pr-20 flex gap-3 items-center",
+              warning: "text-yellow-400",
+              info: "bg-blue-400",
+            },
+          }}
+          position="bottom-right"
+        />
       </Router>
     </ContextProvider>
   </React.StrictMode>

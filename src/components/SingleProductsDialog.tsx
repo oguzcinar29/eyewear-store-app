@@ -8,13 +8,48 @@ import {
 } from "@/components/ui/carousel";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import { Minus, Plus } from "lucide-react";
+import { nanoid } from "nanoid";
+import { useContext } from "react";
+import { StateContext } from "./Context/ProductsContext";
+import { toast } from "sonner";
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function SingleProductsDialog({
   images,
   name,
   price,
+  item,
   category,
 }: SingleProductProps) {
+  const { setCard } = useContext(StateContext)!;
+  const addToCart = async () => {
+    if (window.localStorage.getItem("guestId") === null) {
+      console.log("hey");
+      const id = nanoid(48);
+      window.localStorage.setItem("guestId", JSON.stringify(id));
+    }
+
+    const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
+
+    try {
+      const res = await fetch(`${API_URL}/api/card/add-to-card`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ item, guestId }),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to add to card");
+      } else {
+        const data = await res.json();
+        console.log(data);
+        setCard(data);
+        toast.success("İtem added to card");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="flex ">
       <div className="w-1/2 p-0">
@@ -64,26 +99,8 @@ export default function SingleProductsDialog({
           </span>
         </div>
         <div className="flex gap-5 items-center">
-          <div className="flex items-center text-slate-500 ">
-            <Button
-              className="border border-slate-500 rounded-none"
-              variant={"ghost"}
-              size={"icon"}
-            >
-              <Minus />
-            </Button>
-            <span className="border border-slate-500 border-r-0 border-l-0 rounded-none h-10 w-10 text-center pt-2">
-              2
-            </span>
-            <Button
-              className="border border-slate-500 rounded-none"
-              variant={"ghost"}
-              size={"icon"}
-            >
-              <Plus />
-            </Button>
-          </div>
           <Button
+            onClick={addToCart}
             className="border border-black rounded-none font-bold"
             variant={"ghost"}
           >

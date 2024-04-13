@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/tooltip";
 import SingleProductsDialog from "./SingleProductsDialog";
 import { StateContext } from "./Context/ProductsContext";
+import { toast } from "sonner";
+
 export type SingleProductProps = {
   images: Array<string>;
   name: string;
@@ -35,29 +37,34 @@ export default function SingleProduct({
   _id,
   category,
 }: SingleProductProps) {
-  const { card } = useContext(StateContext)!;
+  const { setCard } = useContext(StateContext)!;
   const addToCart = async () => {
     if (window.localStorage.getItem("guestId") === null) {
       console.log("hey");
       const id = nanoid(48);
       window.localStorage.setItem("guestId", JSON.stringify(id));
     }
-    const newItem = {
-      ...item,
-      quantity: 1,
-    };
-    card.push(newItem);
+
+    const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
+
     try {
       const res = await fetch(`${API_URL}/api/card/add-to-card`, {
         method: "POST",
-        headers: { "Context-type": "application/json" },
-        body: JSON.stringify(newItem),
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ item, guestId }),
       });
+      if (!res.ok) {
+        throw new Error("Failed to add to card");
+      } else {
+        const data = await res.json();
+        console.log(data);
+        setCard(data);
+        toast.success("İtem added to card");
+      }
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(card);
 
   const [isMouseOver, setMouseOver] = useState<boolean>(false);
 

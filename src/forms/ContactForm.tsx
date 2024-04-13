@@ -38,7 +38,7 @@ export default function ContactForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
-    toast("Event has been created.");
+    toast.success("Form has been send.");
     form.reset();
   }
   return (

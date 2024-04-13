@@ -5,7 +5,6 @@ export default function GenderPage({ category }: any) {
   const [products, setProducts] = useState<Array<any>>([]);
   const getProducts = async () => {
     const value = JSON.parse(window.localStorage.getItem("sort") || "[]");
-    console.log(value);
 
     try {
       const res = await fetch(

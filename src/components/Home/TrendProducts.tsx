@@ -36,7 +36,7 @@ export default function TrendProducts() {
         <div className="flex gap-5 mt-5 max-lg:flex-col max-lg:gap-16 max-lg:justify-center max-lg:items-center justify-between">
           {products.map((item: any, index) => {
             if (index < 3) {
-              return <SingleProduct {...item} key={item._id} />;
+              return <SingleProduct item={item} {...item} key={item._id} />;
             }
           })}
         </div>
