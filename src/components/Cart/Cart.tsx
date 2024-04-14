@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { card } = useContext(StateContext)!;
-  console.log(card);
 
   const getCardTotal = () => {
     let total = 0;
@@ -45,12 +44,12 @@ export default function Cart() {
             </div>
           </div>
         </SheetTrigger>
-        <SheetContent className="bg-gray-100 min-w-[425px] max-sm:min-w-full">
+        <SheetContent className="bg-gray-100 min-w-[425px] max-sm:min-w-full ">
           <SheetHeader>
             <SheetTitle>Shopping Cart</SheetTitle>
             <Separator />
             <div>
-              <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] pr-3 ">
+              <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-43vh)] pr-3 ">
                 {card.map((item: any) => {
                   return <SingleCart {...item} key={item._id.toString()} />;
                 })}
@@ -71,12 +70,13 @@ export default function Cart() {
                 >
                   <Link to="/cart">VIEW CART</Link>
                 </Button>
+
                 <Button
                   className="font-semibold rounded-none border border-black text-base "
                   variant={"outline"}
                   asChild
                 >
-                  <Link to="/">CHECKOUT</Link>
+                  <Link to="/checkout">CHECKOUT</Link>
                 </Button>
               </div>
             </div>

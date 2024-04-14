@@ -5,6 +5,7 @@ import WomenAndMen from "./pages/WomenAndMen";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 export default function AppRoutes() {
   return (
@@ -47,6 +48,14 @@ export default function AppRoutes() {
         element={
           <Layout page="gender">
             <CartPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <Layout page="gender">
+            <CheckoutPage />
           </Layout>
         }
       />

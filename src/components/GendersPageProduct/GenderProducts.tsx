@@ -25,7 +25,7 @@ export default function GenderProducts({ total, category, products }: any) {
         {products.map((item: any) => {
           if (item.category === category.toUpperCase()) {
             if (loading) {
-              return <Skeleton />;
+              return <Skeleton key={item._id} />;
             } else {
               return <SingleProduct key={item._id} item={item} {...item} />;
             }
