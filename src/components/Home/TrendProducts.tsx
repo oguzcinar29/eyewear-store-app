@@ -33,7 +33,7 @@ export default function TrendProducts() {
         <h1 className="second-font text-7xl max-lg:text-5xl font-black">
           Trending now
         </h1>
-        <div className="flex gap-5 mt-5 max-lg:flex-col max-lg:gap-16 max-lg:justify-center max-lg:items-center justify-between">
+        <div className="flex gap-5 mt-5 max-lg:flex-col max-lg:gap-16 max-sm:gap-4 max-lg:justify-center max-lg:items-center justify-between">
           {products.map((item: any, index) => {
             if (index < 3) {
               return <SingleProduct item={item} {...item} key={item._id} />;

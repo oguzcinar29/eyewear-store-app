@@ -15,6 +15,8 @@ import MobileCartTable from "./MobileCartTable";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
+// change the increase and decrease buttons they have to wait 1 sec.
+
 export default function CartTable() {
   const { card, setCard } = useContext(StateContext)!;
   const deleteProduct = async (_id: any) => {

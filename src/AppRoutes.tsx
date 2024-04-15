@@ -7,6 +7,7 @@ import ContactPage from "./pages/ContactPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderOkayPage from "./pages/OrderOkayPage";
+import SignleProductPage from "./pages/SignleProductPage";
 
 export default function AppRoutes() {
   return (
@@ -19,7 +20,14 @@ export default function AppRoutes() {
           </Layout>
         }
       />
-      <Route path="/product/:id" element={<span>hey</span>} />
+      <Route
+        path="/product/:id"
+        element={
+          <Layout page="gender">
+            <SignleProductPage />
+          </Layout>
+        }
+      />
       <Route
         path="/product-category/women"
         element={

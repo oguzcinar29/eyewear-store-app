@@ -1,7 +1,7 @@
 import { Minus, Plus, XCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StateContext } from "../Context/ProductsContext";
 import { toast } from "sonner";
 
@@ -24,8 +24,11 @@ export default function SingleCart({
 }: Props) {
   const { setCard } = useContext(StateContext)!;
   const deleteProduct = async () => {
-    console.log(_id);
     const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     try {
       const res = await fetch(
         `${API_URL}/api/card/delete-card?productId=${_id}&guestId=${guestId}`,
@@ -44,10 +47,13 @@ export default function SingleCart({
       console.log(err);
     }
   };
-
+  const [loading, setLoading] = useState(false);
   const changeQuantity = async (type: any) => {
     const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
-
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     try {
       const res = await fetch(`${API_URL}/api/card/change-quantity`, {
         method: "PATCH",
@@ -75,14 +81,25 @@ export default function SingleCart({
           <div className="flex flex-col gap-1">
             <span>{name}</span>
             <div className="flex items-center justify-center">
-              <Button
-                onClick={() => changeQuantity("dec")}
-                className="bg-white border border-gray-300 rounded-none"
-                variant={"ghost"}
-                size={"icon"}
-              >
-                <Minus />
-              </Button>
+              {loading ? (
+                <Button
+                  disabled
+                  variant={"ghost"}
+                  className="bg-white border border-gray-300 rounded-none"
+                  size={"icon"}
+                >
+                  <Minus />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => changeQuantity("dec")}
+                  className="bg-white border border-gray-300 rounded-none"
+                  variant={"ghost"}
+                  size={"icon"}
+                >
+                  <Minus />
+                </Button>
+              )}
               <Button
                 className="bg-white border hover:bg-white cursor-default border-gray-300 rounded-none"
                 variant={"ghost"}
@@ -90,20 +107,38 @@ export default function SingleCart({
               >
                 {quantity}
               </Button>
-              <Button
-                onClick={() => changeQuantity("inc")}
-                className="bg-white border border-gray-300 rounded-none"
-                variant={"ghost"}
-                size={"icon"}
-              >
-                <Plus />
-              </Button>
+              {loading ? (
+                <Button
+                  disabled
+                  variant={"ghost"}
+                  className="bg-white border border-gray-300 rounded-none"
+                  size={"icon"}
+                >
+                  <Plus />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => changeQuantity("inc")}
+                  className="bg-white border border-gray-300 rounded-none"
+                  variant={"ghost"}
+                  size={"icon"}
+                >
+                  <Plus />
+                </Button>
+              )}
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4 text-slate-400 justify-center items-end">
-          <XCircle onClick={deleteProduct} className="cursor-pointer" />
-
+        <div className="flex flex-col gap-1 text-slate-400 justify-center items-end">
+          {loading ? (
+            <Button disabled variant={"ghost"} onClick={deleteProduct}>
+              <XCircle className="cursor-pointer" />
+            </Button>
+          ) : (
+            <Button variant={"ghost"} onClick={deleteProduct}>
+              <XCircle className="cursor-pointer" />
+            </Button>
+          )}
           <span>${price * quantity}.00</span>
         </div>
       </div>

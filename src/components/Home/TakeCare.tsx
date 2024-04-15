@@ -4,8 +4,8 @@ import { Button } from "../ui/button";
 export default function TakeCare() {
   return (
     <div>
-      <div className="flex gap-52 container items-center max-lg:gap-20 mb-10 max-md:flex-col">
-        <div className="w-2/5 max-md:pt-32 flex flex-col gap-5 h-[calc(100vh-20vh)] justify-center  px-[32px] mx-10 max-lg:mx-0  max-xl:w-full max-xl:h-96">
+      <div className="flex gap-52 container items-center max-lg:gap-20 mb-10 max-md:flex-col max-sm:gap-2">
+        <div className="w-2/5 max-md:pt-32 flex flex-col gap-5 h-[calc(100vh-20vh)] justify-center max-sm:p-0  px-[32px] mx-10 max-lg:mx-0  max-xl:w-full max-xl:h-96">
           <span className="font-bold text-base">Heading Text Here</span>
           <h1 className="second-font max-xl:text-4xl max-sm:text-4xl text-7xl font-black tracking-wide">
             How to take care of your eyewear

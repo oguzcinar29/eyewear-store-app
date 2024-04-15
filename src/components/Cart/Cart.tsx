@@ -1,5 +1,6 @@
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -49,7 +50,7 @@ export default function Cart() {
             <SheetTitle>Shopping Cart</SheetTitle>
             <Separator />
             <div>
-              <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-43vh)] pr-3 ">
+              <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-33vh)] pr-3 ">
                 {card.map((item: any) => {
                   return <SingleCart {...item} key={item._id.toString()} />;
                 })}
@@ -63,21 +64,24 @@ export default function Cart() {
               </div>
               <Separator />
               <div className="flex flex-col gap-5 p-3">
-                <Button
-                  className="font-semibold rounded-none border border-black text-base "
-                  variant={"outline"}
-                  asChild
-                >
-                  <Link to="/cart">VIEW CART</Link>
-                </Button>
-
-                <Button
-                  className="font-semibold rounded-none border border-black text-base "
-                  variant={"outline"}
-                  asChild
-                >
-                  <Link to="/checkout">CHECKOUT</Link>
-                </Button>
+                <SheetClose asChild>
+                  <Button
+                    className="font-semibold rounded-none border border-black text-base "
+                    variant={"outline"}
+                    asChild
+                  >
+                    <Link to="/cart">VIEW CART</Link>
+                  </Button>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button
+                    className="font-semibold rounded-none border border-black text-base "
+                    variant={"outline"}
+                    asChild
+                  >
+                    <Link to="/checkout">CHECKOUT</Link>
+                  </Button>
+                </SheetClose>
               </div>
             </div>
           </SheetHeader>

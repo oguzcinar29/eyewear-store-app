@@ -9,7 +9,7 @@ import {
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { nanoid } from "nanoid";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StateContext } from "./Context/ProductsContext";
 import { toast } from "sonner";
 
@@ -22,6 +22,8 @@ export default function SingleProductsDialog({
   item,
   category,
 }: SingleProductProps) {
+  const [loading, setLoading] = useState(false);
+
   const { setCard } = useContext(StateContext)!;
   const addToCart = async () => {
     if (window.localStorage.getItem("guestId") === null) {
@@ -31,7 +33,10 @@ export default function SingleProductsDialog({
     }
 
     const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
-
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     try {
       const res = await fetch(`${API_URL}/api/card/add-to-card`, {
         method: "POST",
@@ -42,6 +47,7 @@ export default function SingleProductsDialog({
         throw new Error("Failed to add to card");
       } else {
         const data = await res.json();
+
         setCard(data);
         toast.success("İtem added to card");
       }
@@ -98,13 +104,23 @@ export default function SingleProductsDialog({
           </span>
         </div>
         <div className="flex gap-5 items-center">
-          <Button
-            onClick={addToCart}
-            className="border border-black rounded-none font-bold"
-            variant={"ghost"}
-          >
-            ADD TO CART
-          </Button>
+          {loading ? (
+            <Button
+              disabled
+              variant={"ghost"}
+              className="border border-black rounded-none font-bold"
+            >
+              ADD TO CART
+            </Button>
+          ) : (
+            <Button
+              onClick={addToCart}
+              className="border border-black rounded-none font-bold"
+              variant={"ghost"}
+            >
+              ADD TO CART
+            </Button>
+          )}
         </div>
       </div>
     </div>
