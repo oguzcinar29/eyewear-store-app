@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Link } from "react-router-dom";
 import Images from "./Images";
@@ -116,7 +116,7 @@ export default function SingleProductComponent({
                 <img src={img2} className="w-20 h-20" alt="" />
                 <div className="flex flex-col gap-3 justify-center p-3">
                   <span>{name2}</span>
-                  <span>${price}.00</span>
+                  <span>${price2}.00</span>
                 </div>
               </div>
             )}
