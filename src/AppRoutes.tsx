@@ -6,6 +6,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import OrderOkayPage from "./pages/OrderOkayPage";
 
 export default function AppRoutes() {
   return (
@@ -56,6 +57,14 @@ export default function AppRoutes() {
         element={
           <Layout page="gender">
             <CheckoutPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/order-status"
+        element={
+          <Layout page="gender">
+            <OrderOkayPage />
           </Layout>
         }
       />

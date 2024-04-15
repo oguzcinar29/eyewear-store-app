@@ -37,9 +37,6 @@ export default function MobileLinks() {
                 CONTACT
               </Link>
               <Separator />
-              <Link to="/" className="hover:text-black">
-                LOG IN
-              </Link>
             </div>
           </SheetHeader>
         </SheetContent>

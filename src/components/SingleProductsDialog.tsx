@@ -42,7 +42,6 @@ export default function SingleProductsDialog({
         throw new Error("Failed to add to card");
       } else {
         const data = await res.json();
-        console.log(data);
         setCard(data);
         toast.success("İtem added to card");
       }

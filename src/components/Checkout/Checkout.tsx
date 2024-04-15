@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import CheckoutForm from "@/forms/CheckoutForm";
+import CheckoutOrder from "./CheckoutOrder";
 
 export default function Checkout() {
   return (
@@ -55,11 +56,13 @@ export default function Checkout() {
           </div>
         </Button>
       </div>
-      <div className="flex gap-10 my-5 mb-16 max-xl:flex-col">
-        <div className="w-3/4 max-xl:w-full ">
+      <div className="flex gap-10 my-5 mb-16 max-xl:flex-col max-xl:gap-16">
+        <div className="w-3/5 max-xl:w-full ">
           <CheckoutForm />
         </div>
-        <div className="w-1/4 max-xl:w-full ">as</div>
+        <div className="w-2/5 max-xl:w-full ">
+          <CheckoutOrder />
+        </div>
       </div>
     </div>
   );

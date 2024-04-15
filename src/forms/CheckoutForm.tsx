@@ -42,6 +42,8 @@ const formSchema = z.object({
   note: z.string(),
 });
 
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function CheckoutForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,18 +61,49 @@ export default function CheckoutForm() {
       note: "",
     },
   });
-
+  const { card } = useContext(StateContext)!;
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    const checkoutData = {
+      cartItems: card.map((item: any) => ({
+        productItemId: item._id.toString(),
+        name: item.name,
+        quantity: item.quantity,
+      })),
+      deliveryDetails: {
+        ...values,
+        country,
+      },
+      guestId: JSON.parse(window.localStorage.getItem("guestId") || "[]"),
+    };
+
+    try {
+      const res = await fetch(
+        `${API_URL}/api/order/checkout/create-checkout-session`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(checkoutData),
+        }
+      );
+      if (!res.ok) {
+        throw new Error("Failed to checkout ");
+      } else {
+        const data = await res.json();
+        console.log(data);
+        window.location.href = data.url;
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const [country, setCountry] = useState<string>("");
   const [isCouponClicked, setCouponClicked] = useState<boolean>(false);
   const [coupon, setCoupon] = useState<string>("");
-  const { card } = useContext(StateContext)!;
 
   const getCardTotal = () => {
     let total = 0;
@@ -204,8 +237,12 @@ export default function CheckoutForm() {
                 name="apartment"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="text-slate-500 font-semibold tracking-wider text-base">
+                    <FormLabel className="text-slate-500 font-semibold max-sm:hidden tracking-wider text-base">
                       Apartment, suite, unit, etc. (optional)
+                      <span className="text-red-500 pl-1">*</span>
+                    </FormLabel>
+                    <FormLabel className="text-slate-500 sm:hidden font-semibold tracking-wider text-base">
+                      Apartment
                       <span className="text-red-500 pl-1">*</span>
                     </FormLabel>
                     <FormControl>
@@ -222,8 +259,12 @@ export default function CheckoutForm() {
                 name="city"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="text-slate-500 font-semibold tracking-wider text-base">
+                    <FormLabel className="text-slate-500 max-sm:hidden font-semibold tracking-wider text-base">
                       Town / City
+                      <span className="text-red-500 pl-1">*</span>
+                    </FormLabel>
+                    <FormLabel className="text-slate-500 sm:hidden font-semibold tracking-wider text-base">
+                      City
                       <span className="text-red-500 pl-1">*</span>
                     </FormLabel>
                     <FormControl>
@@ -346,15 +387,22 @@ export default function CheckoutForm() {
             className="mt-5 w-full border rounded-none tracking-wider border-black text-base font-semibold min-h-14 flex  items-center gap-3"
             variant={"outline"}
             type="submit"
+            disabled={form.formState.isSubmitting}
           >
-            <LockIcon color="black" />
-            <span>
-              PLACE ORDER $
-              {getCardTotal()
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              .00
-            </span>
+            {form.formState.isSubmitting ? (
+              "Please wait"
+            ) : (
+              <div className="flex items-center gap-3">
+                <LockIcon color="black" />
+                <span className="mt-1">
+                  PLACE ORDER $
+                  {getCardTotal()
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  .00
+                </span>
+              </div>
+            )}
           </Button>
         </form>
       </Form>

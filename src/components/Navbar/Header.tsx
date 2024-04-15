@@ -34,9 +34,6 @@ export default function Header({ page }: any) {
         </Link>
         <div className="flex w-1/3 text-right justify-end gap-12 items-center">
           <Cart />
-          <Link className="text-black font-medium" to="/log-in">
-            LOG IN
-          </Link>
         </div>
       </nav>
       <MobileNav />
