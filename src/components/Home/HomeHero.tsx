@@ -23,7 +23,7 @@ export default function HomeHero() {
             className="border-black border rounded-none font-bold w-36"
             variant={"ghost"}
           >
-            <Link to="/">SHOP NOW</Link>{" "}
+            <Link to="/product-category/women">SHOP NOW</Link>{" "}
           </Button>
         </div>
       </div>

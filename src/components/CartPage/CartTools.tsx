@@ -21,7 +21,7 @@ export default function CartTools() {
     return total;
   };
   return (
-    <div className="border flex flex-col gap-3  ">
+    <div className="border flex flex-col gap-3 sticky top-5  ">
       <div className="bg-gray-100  px-5 py-2">
         <h2 className="font-black text-2xl second-font">Cart Totals</h2>
       </div>

@@ -61,7 +61,7 @@ export default function CartSection() {
           <CartTable />
         </div>
 
-        <div className="w-1/4 max-xl:w-full ">
+        <div className="w-1/4 max-xl:w-full sticky top-0 ">
           <CartTools />
         </div>
       </div>
