@@ -17,6 +17,7 @@ import {
 import SingleProductsDialog from "./SingleProductsDialog";
 import { StateContext } from "./Context/ProductsContext";
 import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 export type SingleProductProps = {
   images: Array<string>;
@@ -38,6 +39,7 @@ export default function SingleProduct({
   category,
 }: SingleProductProps) {
   const { setCard } = useContext(StateContext)!;
+  const [loading, setLoading] = useState(false);
   const addToCart = async () => {
     if (window.localStorage.getItem("guestId") === null) {
       console.log("hey");
@@ -46,7 +48,10 @@ export default function SingleProduct({
     }
 
     const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
-
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     try {
       const res = await fetch(`${API_URL}/api/card/add-to-card`, {
         method: "POST",
@@ -88,12 +93,23 @@ export default function SingleProduct({
             <div className=" flex flex-col gap-3">
               <TooltipProvider>
                 <Tooltip>
-                  <TooltipTrigger
-                    onClick={addToCart}
-                    className="bg-slate-50 hover:bg-white text-center flex justify-center items-center text-black w-12 h-12 rounded-full"
-                  >
-                    <ShoppingBasketIcon size={20} />
-                  </TooltipTrigger>
+                  {loading ? (
+                    <Button
+                      variant={"ghost"}
+                      className="bg-slate-50 hover:bg-white text-center flex justify-center items-center text-black w-12 h-12 rounded-full"
+                      disabled
+                      onClick={addToCart}
+                    >
+                      <ShoppingBasketIcon size={20} />
+                    </Button>
+                  ) : (
+                    <TooltipTrigger
+                      onClick={addToCart}
+                      className="bg-slate-50 hover:bg-white text-center flex justify-center items-center text-black w-12 h-12 rounded-full"
+                    >
+                      <ShoppingBasketIcon size={20} />
+                    </TooltipTrigger>
+                  )}
                   <TooltipContent>
                     <p>Add to cart</p>
                   </TooltipContent>

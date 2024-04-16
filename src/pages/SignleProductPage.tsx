@@ -10,7 +10,6 @@ export default function SignleProductPage() {
   const [prevProduct, setPrevProduct] = useState<any>();
 
   const [nextProduct, setNextProduct] = useState<any>();
-  console.log("hey");
 
   const getProduct = async () => {
     try {
@@ -32,8 +31,6 @@ export default function SignleProductPage() {
     }
   };
   const getNextAndPrevProduct = async () => {
-    console.log("hey");
-
     try {
       const res = await fetch(
         `${API_URL}/api/products/get-prev-next-product/${id}`,

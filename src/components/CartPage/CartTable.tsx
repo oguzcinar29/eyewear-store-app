@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StateContext } from "../Context/ProductsContext";
 import { Minus, Plus, XCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -19,8 +19,8 @@ const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function CartTable() {
   const { card, setCard } = useContext(StateContext)!;
+  const [loading, setLoading] = useState(false);
   const deleteProduct = async (_id: any) => {
-    console.log(_id);
     const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
     try {
       const res = await fetch(
@@ -42,7 +42,10 @@ export default function CartTable() {
   };
   const changeQuantity = async (type: any, _id: any) => {
     const guestId = JSON.parse(window.localStorage.getItem("guestId") || "[]");
-
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     try {
       const res = await fetch(`${API_URL}/api/card/change-quantity`, {
         method: "PATCH",
@@ -93,17 +96,28 @@ export default function CartTable() {
                     ${item.price}.00
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center ">
-                      <Button
-                        onClick={() =>
-                          changeQuantity("dec", item._id.toString())
-                        }
-                        className="bg-white border border-gray-300 rounded-none"
-                        variant={"ghost"}
-                        size={"icon"}
-                      >
-                        <Minus />
-                      </Button>
+                    <div className="flex items-center">
+                      {loading ? (
+                        <Button
+                          disabled
+                          variant={"ghost"}
+                          className="bg-white border border-gray-300 rounded-none"
+                          size={"icon"}
+                        >
+                          <Minus />
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() =>
+                            changeQuantity("dec", item._id.toString())
+                          }
+                          className="bg-white border border-gray-300 rounded-none"
+                          variant={"ghost"}
+                          size={"icon"}
+                        >
+                          <Minus />
+                        </Button>
+                      )}
                       <Button
                         className="bg-white border hover:bg-white cursor-default border-gray-300 rounded-none"
                         variant={"ghost"}
@@ -111,16 +125,27 @@ export default function CartTable() {
                       >
                         {item.quantity}
                       </Button>
-                      <Button
-                        onClick={() =>
-                          changeQuantity("inc", item._id.toString())
-                        }
-                        className="bg-white border border-gray-300 rounded-none"
-                        variant={"ghost"}
-                        size={"icon"}
-                      >
-                        <Plus />
-                      </Button>
+                      {loading ? (
+                        <Button
+                          disabled
+                          variant={"ghost"}
+                          className="bg-white border border-gray-300 rounded-none"
+                          size={"icon"}
+                        >
+                          <Plus />
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() =>
+                            changeQuantity("inc", item._id.toString())
+                          }
+                          className="bg-white border border-gray-300 rounded-none"
+                          variant={"ghost"}
+                          size={"icon"}
+                        >
+                          <Plus />
+                        </Button>
+                      )}
                     </div>
                   </TableCell>
                   <TableCell className="text-slate-500 font-medium text-base">

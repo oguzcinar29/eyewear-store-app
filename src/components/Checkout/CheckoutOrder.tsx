@@ -12,9 +12,9 @@ export default function CheckoutOrder() {
     return total;
   };
   return (
-    <div>
+    <div className="sticky top-10 ">
       <h3 className="font-bold text-xl">Your order</h3>
-      <div className="border border-slate-100 mt-2">
+      <div className="border border-slate-100 mt-2 rounded-xl">
         <div className="border p-4 flex justify-between items-center text-slate-400">
           <span>Product</span>
           <span>Subtotal</span>

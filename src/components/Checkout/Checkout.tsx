@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import CheckoutForm from "@/forms/CheckoutForm";
@@ -17,7 +17,7 @@ export default function Checkout() {
           className="hover:bg-white text-slate-300 flex gap-2 max-xl:hidden hover:text-black"
         >
           <Link to="/cart">
-            <span className="bg-black p-3 w-7 h-7 flex justify-center items-center text-center text-white rounded-[50%]">
+            <span className="bg-slate-300 p-3 w-7 h-7 flex justify-center items-center text-center text-white rounded-[50%]">
               1
             </span>
             <span className="font-semibold text-xl hover:text-black text-slate-300  transition">
@@ -25,7 +25,7 @@ export default function Checkout() {
             </span>
           </Link>
         </Button>
-        <ArrowRight className="text-slate-300 max-xl:hidden" />
+        <ChevronRight className="text-slate-300 max-xl:hidden" />
         <Button
           variant={"ghost"}
           asChild
@@ -40,14 +40,14 @@ export default function Checkout() {
             </span>
           </Link>
         </Button>
-        <ArrowRight className="text-slate-300 max-xl:hidden" />
+        <ChevronRight className="text-slate-300 max-xl:hidden" />
         <Button
           variant={"ghost"}
           asChild
           className="hover:bg-white text-slate-300 flex max-xl:hidden  gap-2"
         >
           <div className="cursor-default">
-            <span className="bg-black p-3 w-7 h-7 flex justify-center items-center text-center text-white rounded-[50%]">
+            <span className="bg-slate-300 p-3 w-7 h-7 flex justify-center items-center text-center text-white rounded-[50%]">
               3
             </span>
             <span className="font-semibold text-xl  text-slate-300">

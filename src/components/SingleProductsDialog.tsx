@@ -82,7 +82,7 @@ export default function SingleProductsDialog({
           <h2 className="text-3xl font-black">{name}</h2>
           <div className="flex items-center gap-2">
             <span className="text-2xl font-black">${price} </span>
-            <span className="text-slate-500 tracking-wider">
+            <span className="text-slate-500 tracking-wider mt-1">
               {" "}
               & Free Shipping
             </span>

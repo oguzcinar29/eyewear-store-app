@@ -10,7 +10,7 @@ export default function BeDifferentHome() {
           <h1 className="second-font max-xl:text-4xl max-sm:text-4xl text-7xl font-black tracking-wide">
             Be different in your own way!
           </h1>
-          <p className="text-slate-500  tracking-widest">
+          <p className="text-gray-500  tracking-widest">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
             tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
           </p>

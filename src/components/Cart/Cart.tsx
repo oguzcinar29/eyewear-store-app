@@ -49,41 +49,58 @@ export default function Cart() {
           <SheetHeader>
             <SheetTitle>Shopping Cart</SheetTitle>
             <Separator />
-            <div>
-              <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-33vh)] pr-3 ">
-                {card.map((item: any) => {
-                  return <SingleCart {...item} key={item._id.toString()} />;
-                })}
+            {card.length !== 0 && (
+              <div>
+                <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-33vh)] pr-3 ">
+                  {card.map((item: any) => {
+                    return <SingleCart {...item} key={item._id.toString()} />;
+                  })}
+                </div>
+                <Separator />
+                <div className="flex justify-between p-3 py-7">
+                  <span className="font-semibold text-lg">Subtotal:</span>
+                  <span className="text-slate-500 tracking-[1.5px]">
+                    ${getCardTotal()}.00
+                  </span>
+                </div>
+                <Separator />
+                <div className="flex flex-col gap-5 p-3">
+                  <SheetClose asChild>
+                    <Button
+                      className="font-semibold rounded-none border border-black text-base "
+                      variant={"outline"}
+                      asChild
+                    >
+                      <Link to="/cart">VIEW CART</Link>
+                    </Button>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button
+                      className="font-semibold rounded-none border border-black text-base "
+                      variant={"outline"}
+                      asChild
+                    >
+                      <Link to="/checkout">CHECKOUT</Link>
+                    </Button>
+                  </SheetClose>
+                </div>
               </div>
-              <Separator />
-              <div className="flex justify-between p-3 py-7">
-                <span className="font-semibold text-lg">Subtotal:</span>
-                <span className="text-slate-500 tracking-[1.5px]">
-                  ${getCardTotal()}.00
+            )}
+            {card.length === 0 && (
+              <div className="flex flex-col  h-[calc(100vh-9vh)] justify-between text-center">
+                <span className="relative top-80 text-gray-500 font-medium text-lg">
+                  No products in the cart
                 </span>
-              </div>
-              <Separator />
-              <div className="flex flex-col gap-5 p-3">
                 <SheetClose asChild>
                   <Button
                     className="font-semibold rounded-none border border-black text-base "
                     variant={"outline"}
-                    asChild
                   >
-                    <Link to="/cart">VIEW CART</Link>
-                  </Button>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Button
-                    className="font-semibold rounded-none border border-black text-base "
-                    variant={"outline"}
-                    asChild
-                  >
-                    <Link to="/checkout">CHECKOUT</Link>
+                    CONTINUE SHOPPING
                   </Button>
                 </SheetClose>
               </div>
-            </div>
+            )}
           </SheetHeader>
         </SheetContent>
       </Sheet>

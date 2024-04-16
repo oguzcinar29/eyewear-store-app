@@ -16,8 +16,8 @@ export default function Images({ images }: any) {
           onClick={() => changeImage(0)}
           className={
             images && img !== images[0]
-              ? "w-40 h-40  max-lg:max-w-20 max-lg:max-h-20"
-              : "w-40 h-40 max-lg:max-w-20 max-lg:max-h-20  border border-black"
+              ? "w-40 h-40  max-lg:max-w-20 max-lg:max-h-24"
+              : "w-40 h-40 max-lg:max-w-20 max-lg:max-h-24  border border-black"
           }
           src={images && images[0]}
           alt=""
@@ -26,8 +26,8 @@ export default function Images({ images }: any) {
           onClick={() => changeImage(1)}
           className={
             images && img !== images[1]
-              ? "w-40 h-40 max-lg:max-w-20 max-lg:max-h-20"
-              : "w-40 h-40 max-lg:max-w-20 max-lg:max-h-20 border border-black"
+              ? "w-40 h-40 max-lg:max-w-20 max-lg:max-h-24"
+              : "w-40 h-40 max-lg:max-w-20 max-lg:max-h-24 border border-black"
           }
           src={images && images[1]}
           alt=""
@@ -36,8 +36,8 @@ export default function Images({ images }: any) {
           onClick={() => changeImage(2)}
           className={
             images && img !== images[2]
-              ? "w-40 h-40 max-lg:max-w-20 max-lg:max-h-20"
-              : "w-40 h-40 max-lg:max-w-20 max-lg:max-h-20 border border-black"
+              ? "w-40 h-40 max-lg:max-w-20 max-lg:max-h-24"
+              : "w-40 h-40 max-lg:max-w-20 max-lg:max-h-24 border border-black"
           }
           src={images && images[2]}
           alt=""
@@ -46,7 +46,7 @@ export default function Images({ images }: any) {
       <div>
         <Zoom>
           <img
-            className="w-full h-[500px] max-lg:max-h-[264px] cursor-auto"
+            className="w-full h-[500px] max-lg:max-h-[312px] cursor-auto"
             src={img ? img : images && images[0]}
             alt=""
           />
