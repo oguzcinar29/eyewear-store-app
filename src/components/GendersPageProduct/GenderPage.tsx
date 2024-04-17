@@ -40,7 +40,7 @@ export default function GenderPage({ category }: any) {
   };
   return (
     <div className="my-16">
-      <div className="container mx-auto flex flex-col gap-4 ">
+      <div className="container 2 mx-auto flex flex-col gap-4 ">
         <span className="font-light text-slate-500">
           Home / {category.charAt(0).toUpperCase() + category.slice(1)}
         </span>
