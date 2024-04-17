@@ -85,7 +85,15 @@ export default function SingleProduct({
         }}
       >
         <Link to={`/product/${_id}`}>
-          <img className="" src={isMouseOver ? images[1] : images[0]} alt="" />
+          <img
+            className=""
+            onClick={() => {
+              window.scrollTo(0, 0);
+              console.log("hey");
+            }}
+            src={isMouseOver ? images[1] : images[0]}
+            alt=""
+          />
         </Link>
 
         {isMouseOver && (

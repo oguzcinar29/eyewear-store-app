@@ -44,7 +44,7 @@ export default function GenderPage({ category }: any) {
         <span className="font-light text-slate-500">
           Home / {category.charAt(0).toUpperCase() + category.slice(1)}
         </span>
-        <h1 className="text-8xl font-black second-font">
+        <h1 className="text-8xl max-sm:text-7xl font-black second-font">
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </h1>
       </div>

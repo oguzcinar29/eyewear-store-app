@@ -51,7 +51,7 @@ export default function Cart() {
             <Separator />
             {card.length !== 0 && (
               <div>
-                <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-33vh)] pr-3 ">
+                <div className="flex flex-col sticky overflow-y-scroll h-[calc(100vh-30vh)] max-sm:h-[calc(100vh-43vh)] pr-3 ">
                   {card.map((item: any) => {
                     return <SingleCart {...item} key={item._id.toString()} />;
                   })}
